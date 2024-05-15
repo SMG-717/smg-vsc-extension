@@ -1,0 +1,25 @@
+{
+  "name": "smg-lang",
+  "displayName": "SMG-Lang",
+  "description": "Syntax highlighting for the SMG language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "smg",
+      "aliases": ["SMG", "smg"],
+      "extensions": [".smg"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "smg",
+      "scopeName": "source.smg",
+      "path": "./syntaxes/smg.tmLanguage.json"
+    }]
+  }
+}
