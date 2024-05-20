@@ -2,31 +2,92 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "SMG",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+	  { "include": "#keywords" },
+	  { "include": "#literals" },
+	  { "include": "#variables" },
+	  { "include": "#comment" }
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.smg",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
+	  "literals": {
+		"patterns" : [
+		  {
 			"name": "string.quoted.double.smg",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
-				{
-					"name": "constant.character.escape.smg",
-					"match": "\\\\."
-				}
+			  {
+				"name": "constant.character.escape.smg",
+				"match": "\\\\."
+			  }
 			]
-		}
+		  },
+		  {
+			"name": "string.quoted.single.smg",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+			  {
+				"name": "constant.character.escape.smg",
+				"match": "\\\\."
+			  }
+			]
+		  },
+		  {
+			"name": "constant.numeric.smg",
+			"match": "\\b[[:digit:]]+(\\.[[:digit:]]*)?"
+		  },
+		  {
+			"name": "constant.language.smg",
+			"match": "\\b(null|true|false)\\b"
+		  }
+		]
+	  },
+	  "keywords": {
+		"patterns": [
+		  {
+			"name": "keyword.control.smg",
+			"match": "\\b(if|else|in|try|catch|finally|continue|break|while|for|return|as)\\b"
+		  },
+		  {
+			"name": "support.type.smg",
+			"match": "\\b(int|char|boolean|date|long|double|float|string)\\b"
+		  },
+		  {
+			"name": "entity.name.tag.smg",
+			"match": "\\b(function|fn|λ|let|and|or)\\b"
+		  },
+		  {
+			"name": "constant.language.smg",
+			"match": "\\b(null|true|false)\\b"
+		  }
+		]
+	  },
+	  "variables": {
+		"patterns" : [
+		  {
+			"match": "(\\w+)\\s*\\(",
+			"name": "support.function.smg"
+		  },
+		  {
+			"match": "([A-Z]\\w*)",
+			"name": "support.type.smg"
+		  },
+		  {
+			"match": "(\\w+)",
+			"name": "variable.smg"
+		  }
+		]
+	  },
+	  "comment": {
+		"name": "comment.line.number-sign.smg",
+		"begin": "#",
+		"end": "\n",
+		"patterns": [
+		  {
+			"match": "\\\\."
+		  }
+		]
+	  }
 	},
 	"scopeName": "source.smg"
-}
+  }
